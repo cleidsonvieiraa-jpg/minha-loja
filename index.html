@@ -1,24 +1,56 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Minha Loja</title>
-</head>
-<body>
+<h1>Minha Loja</h1>
 
-  <h1>Minha Loja</h1>
+<div>
+  <h2>Produto 1</h2>
+  <p>Preço: R$ 10</p>
+  <button onclick="addToCart('Produto 1', 10)">Adicionar ao carrinho</button>
+</div>
 
-  <div>
-    <h2>Produto 1</h2>
-    <p>Preço: R$ 10</p>
-    <button>Adicionar ao carrinho</button>
-  </div>
+<div>
+  <h2>Produto 2</h2>
+  <p>Preço: R$ 20</p>
+  <button onclick="addToCart('Produto 2', 20)">Adicionar ao carrinho</button>
+</div>
 
-  <div>
-    <h2>Produto 2</h2>
-    <p>Preço: R$ 20</p>
-    <button>Adicionar ao carrinho</button>
-  </div>
+<h2>Carrinho</h2>
+<ul id="cartList"></ul>
+<p>Total: R$ <span id="total">0</span></p>
+<button onclick="sendWhatsApp()">Finalizar pelo WhatsApp</button>
 
-</body>
-</html>
+<script>
+  let cart = [];
+  let total = 0;
+
+  function addToCart(name, price) {
+    cart.push({name, price});
+    total += price;
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartList = document.getElementById('cartList');
+    cartList.innerHTML = '';
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.name + ' - R$ ' + item.price;
+      cartList.appendChild(li);
+    });
+    document.getElementById('total').textContent = total;
+  }
+
+  function sendWhatsApp() {
+    if(cart.length === 0) {
+      alert('Carrinho vazio!');
+      return;
+    }
+    let message = 'Olá! Gostaria de fazer este pedido:\n';
+    cart.forEach(item => {
+      message += `- ${item.name} - R$ ${item.price}\n`;
+    });
+    message += `Total: R$ ${total}\n`;
+    message += 'Endereço: _______';
+    const url = 'https://wa.me/SEUNUMERO?text=' + encodeURIComponent(message);
+    window.open(url, '_blank');
+  }
+</script>
+
