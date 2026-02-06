@@ -1,17 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Minha Loja</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    div.product {
+      background-color: #fff;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    div.product h2 {
+      margin: 0 0 5px 0;
+    }
+
+    button {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #128C7E;
+    }
+
+    h2, ul, p {
+      margin-top: 0;
+    }
+
+    #cartList {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      background-color: #eee;
+      margin-bottom: 5px;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
 <h1>Minha Loja</h1>
 
-<div>
+<!-- Produtos -->
+<div class="product">
   <h2>Produto 1</h2>
   <p>Preço: R$ 10</p>
   <button onclick="addToCart('Produto 1', 10)">Adicionar ao carrinho</button>
 </div>
 
-<div>
+<div class="product">
   <h2>Produto 2</h2>
   <p>Preço: R$ 20</p>
   <button onclick="addToCart('Produto 2', 20)">Adicionar ao carrinho</button>
 </div>
 
+<!-- Carrinho -->
 <h2>Carrinho</h2>
 <ul id="cartList"></ul>
 <p>Total: R$ <span id="total">0</span></p>
@@ -49,8 +114,12 @@
     });
     message += `Total: R$ ${total}\n`;
     message += 'Endereço: _______';
+    
+    // Substitua SEUNUMERO pelo seu número no formato internacional
     const url = 'https://wa.me/SEUNUMERO?text=' + encodeURIComponent(message);
     window.open(url, '_blank');
   }
 </script>
 
+</body>
+</html>
